@@ -3,7 +3,7 @@ body {
     place-items: center;
     min-height: 100vh;
     margin: 0;
-    background-image: url('bg.gif');
+    background-image: url('fate.gif');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -17,7 +17,7 @@ body {
     padding-left: 10%;
     padding-right: 10%;
     max-width: 100%;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(7px);
     text-align: center;
     border-radius: 16px;
     color: wheat;
@@ -26,15 +26,10 @@ body {
     background-color: rgba(29, 43, 38, 0.322);
 }
 
-@keyframes spin {
-    0% {transform: rotateZ(0deg);}
-    100% {transform: rotateZ(360deg);}
-}
-
 .box h1, p {
     color: rgb(241, 241, 241);
     font-weight: bold;
-    background: linear-gradient(to right, #ffaa40, #4079ff, #ffaa40);
+    background: linear-gradient(to right, #ffaa40, #4079ff, #b80b0b);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
@@ -49,7 +44,7 @@ body {
     border-radius: 50%;
     object-fit: cover;
     transition: 1s ease-in-out;
-    animation: opac 1s ease-in-out infinite, spin 50s linear infinite;
+    animation: opac 1s ease-in-out infinite;
 }
 
 @keyframes opac {
