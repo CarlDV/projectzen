@@ -1,0 +1,97 @@
+body {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-image: url('bg.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.box {
+    text-align: center;
+    margin: auto;
+    padding: 2%;
+    padding-left: 10%;
+    padding-right: 10%;
+    max-width: 100%;
+    backdrop-filter: blur(10px);
+    text-align: center;
+    border-radius: 16px;
+    color: wheat;
+    text-shadow: 10px 10px 10px black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgba(29, 43, 38, 0.322);
+}
+
+@keyframes spin {
+    0% {transform: rotateZ(0deg);}
+    100% {transform: rotateZ(360deg);}
+}
+
+.box h1, p {
+    color: rgb(241, 241, 241);
+    font-weight: bold;
+    background: linear-gradient(to right, #ffaa40, #4079ff, #ffaa40);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    font-weight: bold;
+    text-align: center;
+    animation: gradientAnimation 5s ease infinite;
+}
+
+.box .sol {
+    border-radius: 50%;
+    object-fit: cover;
+    transition: 1s ease-in-out;
+    animation: opac 1s ease-in-out infinite, spin 50s linear infinite;
+}
+
+@keyframes opac {
+    0% {opacity: 1;}
+    50% {opacity: 0.7;}
+    100% {opacity: 1;}
+}
+
+.box .sol:hover {
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+}
+
+.socials a {
+    text-decoration: none;
+    color: aquamarine;
+}
+
+.socials img {
+    width: 30px;
+    padding: 2%;
+    background-color: #0000006c;
+    border-radius: 16px;
+    transition: 0.4s ease-in-out;
+
+}
+
+.socials img:hover {
+    transform: scale(1.1);
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
