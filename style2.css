@@ -3,7 +3,7 @@ body {
     place-items: center;
     min-height: 100vh;
     margin: 0;
-    background-image: url('fate.gif');
+    background-image: url('woosh.gif');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -17,13 +17,14 @@ body {
     padding-left: 10%;
     padding-right: 10%;
     max-width: 100%;
-    backdrop-filter: blur(7px);
+    backdrop-filter: blur(4px);
     text-align: center;
     border-radius: 16px;
     color: wheat;
     text-shadow: 10px 10px 10px black;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: rgba(29, 43, 38, 0.322);
+    border: 2px dashed rgb(114, 43, 43);
 }
 
 .box h1, p {
@@ -45,6 +46,7 @@ body {
     object-fit: cover;
     transition: 1s ease-in-out;
     animation: opac 1s ease-in-out infinite;
+    border: 2px solid rgba(255, 255, 255, 0.61);
 }
 
 @keyframes opac {
@@ -70,7 +72,7 @@ body {
     background-color: #0000006c;
     border-radius: 16px;
     transition: 0.4s ease-in-out;
-
+    border: 2px solid black;
 }
 
 .socials img:hover {
