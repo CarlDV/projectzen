@@ -15,7 +15,6 @@ body {
     place-content: center;
     min-height: 100vh;
     margin: 0;
-    background-image: url('murata.gif');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -25,7 +24,7 @@ body {
 }
 
 #lyrics-container {
-    position: fixed;
+    text-align: center;
     top: 25px;
     left: 25px;
     z-index: 10;
