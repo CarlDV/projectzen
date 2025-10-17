@@ -56,7 +56,6 @@
 
     const LYRIC_OFFSET = 0;
 
-    // fetch and parse lyrics
     fetch('umi.lrc')
       .then(response => response.text())
       .then(text => { lyrics = parseLRC(text); })
@@ -82,13 +81,11 @@
       return parsedLyrics;
     }
 
-    // overlay button
     enterButton.addEventListener('click', () => {
       audio.play().catch(error => console.error("Audio playback failed:", error));
       overlay.classList.add('hidden');
     });
 
-    // display lyrics in sync with audio
     audio.addEventListener('timeupdate', () => {
       const currentTime = audio.currentTime + LYRIC_OFFSET;
       const currentLyric = lyrics.find((lyric, index) => {
@@ -98,7 +95,6 @@
       lyricsContainer.textContent = currentLyric ? currentLyric.text : '';
     });
 
-    // background GIF cycle (independent from audio)
     const gifs = ['murata.gif', 'murata2.gif', 'murata3.gif',
       'murata3.gif',
       'murata4.gif',
@@ -108,7 +104,7 @@
       'murata8.gif',
       'murata9.gif',
       'murata10.gif',
-      'murata11.gif']; // replace with your GIFs
+      'murata11.gif'];
     let index = 0;
 
     function nextGif() {
@@ -116,9 +112,8 @@
       setTimeout(() => {
         index = (index + 1) % gifs.length;
         nextGif();
-      }, 5000); // adjust to match GIF duration
+      }, 5000);
     }
-    // start cycling GIFs
     nextGif();
   </script>
 </body>
