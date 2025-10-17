@@ -6,7 +6,7 @@
   <title>Body body body!</title>
   <meta property="og:title" content="David's Portfolio">
   <meta property="og:description" content="nwjaveawhvejawveuawvheawv">
-  <meta property="og:image" content="https://c.tenor.com/h2xvRpDeSIEAAAAC/tenor.gif">
+  <meta property="og:image" content="https://files.catbox.moe/mww2q5.gif">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:url" content="https://apocrypha.pages.dev">
@@ -18,7 +18,7 @@
   <div id="welcome-overlay">
     <div class="welcome-content">
       <h1>Welcome!</h1>
-      <button id="enter-button">Click Me! 😊</button>
+      <button id="enter-button">Click Me!</button>
     </div>
   </div>
 
@@ -26,15 +26,14 @@
 
   <div class="box">
     <h1 style="color: antiquewhite;">Helloooo!!!</h1>
-    <img src="zen2.gif" width="200" height="200" class="sol" alt="Animated profile picture">
-    <p>I'm David :)</p>
-    <p>I do .html, .css, .java, and .py! </p>
+    <img src="zen2.gif" width="200" height="200" class="sol" title="Ayato Yuri from yarichin b club!!!">
+    <p>I'm David :) <br> I do .html, .css, .java, and .py</p>
     <div class="socials">
       <a href="https://discord.com/users/852629822727651399" target="_blank">
-        <img src="dis.png" alt="Discord">
+        <img src="dis.png" alt="Discord" title="Discord">
       </a>
       <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
-        <img src="spot.png" alt="Spotify">
+        <img src="spot.png" alt="Spotify" title="Spotify">
       </a>
       <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" title="GitHub">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="github-icon">
@@ -43,7 +42,7 @@
       </a>
     </div>
   </div>
-  <audio id="welcome-audio" src="ybc.mp3" preload="auto" loop></audio>
+  <audio id="welcome-audio" src="umi.mp3" preload="auto" loop></audio>
   <script>
     const overlay = document.getElementById('welcome-overlay');
     const enterButton = document.getElementById('enter-button');
@@ -52,9 +51,9 @@
     let lyrics = [];
 
     // negative is slow positive is fast change later if broken 
-    const LYRIC_OFFSET = -0.80;
+    const LYRIC_OFFSET = 0;
 
-    fetch('lyrics.lrc')
+    fetch('umi.lrc')
       .then(response => response.text())
       .then(text => {
         lyrics = parseLRC(text);
