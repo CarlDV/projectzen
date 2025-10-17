@@ -3,13 +3,6 @@
     --profile-img-hover-size: 220px;
 }
 
-@font-face {
-  font-family: "Minocraft";
-  src: url("Monocraft-01.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-
 body {
     display: grid;
     place-content: center;
@@ -32,6 +25,19 @@ body {
     font-size: 2rem;
     font-weight: 500;
     padding: 0.5rem 1rem;
+    color: rgb(224, 24, 24);
+}
+
+#lyrics-container::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    from, to {
+        color: transparent;
+    }
+    50% { color: rgb(224, 24, 24); }
 }
 
 @keyframes fadeInLyric {
@@ -66,8 +72,7 @@ body {
 }
 
 .box h1, .box p {
-    padding: 1%;
-    font-family: "Monocraft", sans-serif;
+    padding: 2%;
     color: wheat;
 }
 
@@ -177,4 +182,14 @@ body {
         margin: 1rem;
         padding: 1rem;
     }
+}
+
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
 }

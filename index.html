@@ -20,6 +20,7 @@
     <div class="welcome-content">
       <h1>Welcome!</h1>
       <button id="enter-button">Click Me!</button>
+      <p>video isnt mine. <br> <a href="https://www.youtube.com/watch?v=NoInuASwx1U&list=RDNoInuASwx1U&start_radio=1" target="_blank" style="text-decoration: none; color: red;">click here for the video</a></p>
     </div>
   </div>
 
@@ -28,7 +29,7 @@
   <div class="box">
     <h1 style="color: antiquewhite;">Helloooo!!!</h1>
     <img src="zen2.gif" width="200" height="200" class="sol" title="Ayato Yuri from yarichin b club!!!">
-    <p>I'm David :) <br> I do .html, .css, .java, and .py</p>
+    <p>I'm David :) <br> I do .html, .css, .java, and .py <br> (i skidded the js from gemini lol)</p>
     <div class="socials">
       <a href="https://discord.com/users/852629822727651399" target="_blank">
         <img src="dis.png" alt="Discord" title="Discord">
@@ -45,15 +46,22 @@
     </div>
   </div>
 
-  <audio id="welcome-audio" src="umi.mp3" preload="auto" loop></audio>
+  <video id="bg-video" muted playsinline>
+    <source src="umi.mp4" type="video/mp4">
+  </video>
+
+  <audio id="welcome-audio" src="umi.mp3" preload="auto"></audio>
 
   <script>
     const overlay = document.getElementById('welcome-overlay');
     const enterButton = document.getElementById('enter-button');
     const audio = document.getElementById('welcome-audio');
     const lyricsContainer = document.getElementById('lyrics-container');
-    let lyrics = [];
+    const bgVideo = document.getElementById('bg-video');
 
+    let lyrics = [];
+    let currentLyricText = null;
+    let lyricAnimationTimeout;
     const LYRIC_OFFSET = 0;
 
     fetch('umi.lrc')
@@ -83,38 +91,79 @@
 
     enterButton.addEventListener('click', () => {
       audio.play().catch(error => console.error("Audio playback failed:", error));
+      bgVideo.play().catch(error => console.error("Video playback failed:", error));
       overlay.classList.add('hidden');
     });
 
+    function animateLyrics(text, currentLyric, nextLyric) {
+      let i = 0;
+      lyricsContainer.textContent = '';
+      const typingSpeed = 80;
+      const deletingSpeed = 0;
+
+      function type() {
+        if (i < text.length) {
+          lyricsContainer.textContent += text.charAt(i);
+          i++;
+          lyricAnimationTimeout = setTimeout(type, typingSpeed);
+        } else {
+          const lyricEndTime = nextLyric ? nextLyric.time : audio.duration;
+          const timeUntilNextLyric = (lyricEndTime - audio.currentTime) * 1000;
+          const textDeletionDuration = text.length * deletingSpeed;
+          const deleteDelay = Math.max(0, timeUntilNextLyric - textDeletionDuration - 100);
+          lyricAnimationTimeout = setTimeout(deleteText, deleteDelay);
+        }
+      }
+
+      function deleteText() {
+        if (lyricsContainer.textContent.length > 0) {
+          lyricsContainer.textContent = lyricsContainer.textContent.slice(0, -1);
+          lyricAnimationTimeout = setTimeout(deleteText, deletingSpeed);
+        }
+      }
+
+      type();
+    }
+
     audio.addEventListener('timeupdate', () => {
       const currentTime = audio.currentTime + LYRIC_OFFSET;
-      const currentLyric = lyrics.find((lyric, index) => {
+
+      const currentLyricIndex = lyrics.findIndex((lyric, index) => {
         const nextLyric = lyrics[index + 1];
         return currentTime >= lyric.time && (!nextLyric || currentTime < nextLyric.time);
       });
-      lyricsContainer.textContent = currentLyric ? currentLyric.text : '';
+
+      const currentLyric = lyrics[currentLyricIndex];
+      const nextLyric = lyrics[currentLyricIndex + 1];
+      const newLyricText = currentLyric ? currentLyric.text : '';
+
+      if (newLyricText !== currentLyricText) {
+        currentLyricText = newLyricText;
+        clearTimeout(lyricAnimationTimeout);
+        if (newLyricText) animateLyrics(newLyricText, currentLyric, nextLyric);
+        else lyricsContainer.textContent = '';
+      }
     });
 
-    const gifs = ['murata.gif', 'murata2.gif', 'murata3.gif',
-      'murata3.gif',
-      'murata4.gif',
-      'murata5.gif',
-      'murata6.gif',
-      'murata7.gif',
-      'murata8.gif',
-      'murata9.gif',
-      'murata10.gif',
-      'murata11.gif'];
-    let index = 0;
-
-    function nextGif() {
-      document.body.style.backgroundImage = `url('${gifs[index]}')`;
+    audio.addEventListener('ended', () => {
       setTimeout(() => {
-        index = (index + 1) % gifs.length;
-        nextGif();
-      }, 5000);
-    }
-    nextGif();
+        bgVideo.currentTime = 0;
+        bgVideo.play();
+        audio.play();
+      }, 3000);
+    });
+
+    audio.addEventListener('play', () => {
+      bgVideo.play();
+    });
+
+    audio.addEventListener('pause', () => {
+      bgVideo.pause();
+    });
+
+    audio.addEventListener('seeked', () => {
+      bgVideo.currentTime = audio.currentTime;
+    });
   </script>
 </body>
 
