@@ -142,6 +142,10 @@ body {
     text-align: center;
 }
 
+.welcome-content p {
+    margin-top: 50px;
+}
+
 .welcome-content h1 {
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
